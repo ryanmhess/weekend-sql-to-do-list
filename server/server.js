@@ -11,5 +11,5 @@ app.use('/todo', toDoRouter);
 
 app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`);
-    console.log('URL: http://localhost:5000/');
+    console.log('URL:', 'http://localhost:5000/');
 })

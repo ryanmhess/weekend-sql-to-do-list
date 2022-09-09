@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const express = reqiure('express');
+const express = require('express');
 const toDoRouter = express.Router();
 
 const pool = require('../modules/pool.js');
