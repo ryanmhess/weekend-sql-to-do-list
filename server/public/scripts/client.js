@@ -4,35 +4,61 @@ $(document).ready(onReady);
 
 function onReady(){
     getToDoList();
-    $('#submit-btn').on('click', getToDoList);
+    $('#submit-btn').on('click', addToDoList);
 }
 
 //  GET
-
 function getToDoList(){
     console.log('In GET Route');
     $.ajax({
         method: 'GET',
         url: '/todo'
     }).then((getRes) => {
-        console.log('The GET to /todo was successful:', getRes);
+        console.log('The GET /todo was successful');
         generateToDoList(getRes);
     }).catch((error) => {
-        console.log('The GET to /todo was unsuccessful:', error);
-    })
+        console.log('The GET /todo was unsuccessful:', error);
+    });
 }
 
 //  POST
+function addToDoList(){
+    console.log('In POST Route');
+    const startDateTime = new Date().toLocaleString();
+    const newTaskInput = {
+        priority: $('#priorityInput').val(),
+        owner: $('#ownerInput').val(),
+        task: $('#taskInput').val(),
+        details: $('#detailsInput').val(),
+        start: startDateTime, 
+        finish: null,
+        complete: false
+    }
+    $.ajax({
+        method: 'POST',
+        url: '/todo',
+        data: newTaskInput
+    }).then((postRes) => {
+        console.log('The POST /todo was successful:', postRes);
+        getToDoList();
+    }).catch((error) => {
+        console.log('The POST /todo was unsuccessful:', error);
+    });
+}
 
 //  DELETE
 
+
 //  PUT
 
-//  GENERATE
 
+//  GENERATE
 function generateToDoList(tasks){
     console.log('In Generate Function');
-    console.log(tasks);
+    $('#priorityInput').val('');
+    $('#ownerInput').val('');
+    $('#taskInput').val('');
+    $('#detailsInput').val('');
     $('#tableBody').empty();
     for(let currentTask of tasks) {
         $('#tableBody').append(`
@@ -51,6 +77,6 @@ function generateToDoList(tasks){
                     </div>
                 </td>
             </tr>
-        `)
+        `);
     }
 }
