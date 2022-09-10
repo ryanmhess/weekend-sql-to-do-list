@@ -5,6 +5,7 @@ $(document).ready(onReady);
 function onReady(){
     getToDoList();
     $('#submit-btn').on('click', addToDoList);
+    $(document).on('click', '.delete-btn', deleteFromToDoList);
 }
 
 //  GET
@@ -31,7 +32,6 @@ function addToDoList(){
         task: $('#taskInput').val(),
         details: $('#detailsInput').val(),
         start: startDateTime, 
-        finish: null,
         complete: false
     }
     $.ajax({
@@ -47,9 +47,24 @@ function addToDoList(){
 }
 
 //  DELETE
+function deleteFromToDoList(){
+    console.log('In DELETE Route');
+    let idToDelete = $(this).closest('tr').data("id");
+    $.ajax({
+        method: 'DELETE',
+        url: `/todo/${idToDelete}`
+    }).then((deleteRes) => {
+        console.log('The DELETE /todo was successful:', deleteRes);
+        getToDoList();
+    }).catch((error) => {
+        console.log('The DELETE /todo was unsuccessful:', error);
+    });
+}
+
+//  PUT - EDIT
 
 
-//  PUT
+//  PUT - COMPLETE
 
 
 //  GENERATE
@@ -71,9 +86,9 @@ function generateToDoList(tasks){
                 <td>${currentTask.finish}</td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                        <button type="button" class="btn btn-success">COMPLETE</button>
-                        <button type="button" class="btn btn-warning">EDIT</button>
-                        <button type="button" class="btn btn-danger">DELETE</button>
+                        <button type="button" class="btn complete-btn btn-success">COMPLETE</button>
+                        <button type="button" class="btn edit-btn btn-warning">EDIT</button>
+                        <button type="button" class="btn delete-btn btn-danger">DELETE</button>
                     </div>
                 </td>
             </tr>
