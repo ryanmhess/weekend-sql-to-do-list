@@ -29,13 +29,14 @@ toDoRouter.get('/', (req, res) => {
 toDoRouter.post('/', (req, res) => {
     console.log('In POST Route');
     let newTask = req.body;
+    console.log(newTask);
     let queryText = `
         INSERT INTO "toDoList"
-            ("priority", "owner", "task", "details", "start", "finish", "complete")
+            ("priority", "owner", "task", "details", "start", "complete")
             VALUES
-            ($1, $2, $3, $4, $5, $6, $7);
+            ($1, $2, $3, $4, $5, $6);
     `;
-    pool.query(queryText, [newTask.priority, newTask.owner, newTask.task, newTask.details, newTask.start, newTask.finish, newTask.complete])
+    pool.query(queryText, [newTask.priority, newTask.owner, newTask.task, newTask.details, newTask.start, newTask.complete])
         .then((postRes) => {
             res.sendStatus(201);
         }).catch((error) => {

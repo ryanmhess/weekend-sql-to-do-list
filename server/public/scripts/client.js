@@ -31,7 +31,6 @@ function addToDoList(){
         task: $('#taskInput').val(),
         details: $('#detailsInput').val(),
         start: startDateTime, 
-        finish: null,
         complete: false
     }
     $.ajax({
