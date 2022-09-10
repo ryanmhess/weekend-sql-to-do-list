@@ -38,6 +38,7 @@ toDoRouter.post('/', (req, res) => {
     `;
     pool.query(queryText, [newTask.priority, newTask.owner, newTask.task, newTask.details, newTask.start, newTask.complete])
         .then((postRes) => {
+            console.log('The POST /todo was successful');
             res.sendStatus(201);
         }).catch((error) => {
             console.log('The POST /todo was unsuccessful:', error);
@@ -46,8 +47,23 @@ toDoRouter.post('/', (req, res) => {
 });
 
 //  DELETE
-
-
+toDoRouter.delete('/:idToDelete', (req, res) => {
+    console.log('In DELETE Route');
+    let deleteId = req.params.idToDelete;
+    let sqlValue = [deleteId];
+    let sqlQuery = `
+        DELETE FROM "toDoList"
+            WHERE "id" = $1;
+    `
+    pool.query(sqlQuery, sqlValue)
+        .then((deleteRes) => {
+            console.log('The DELETE /todo was successful');
+            res.sendStatus(200);
+        }).catch((error) => {
+            console.log('The DELETE /todo was unsuccessful:', error);
+            res.sendStatus(500);
+        });
+});
 //  PUT
 
 
