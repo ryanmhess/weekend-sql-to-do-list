@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">  
     <script src="./scripts/jQuery.js"></script>
     <script src="./scripts/client.js"></script>
     <title>Document</title>
@@ -19,24 +20,23 @@
             <input type="text" id="detailsInput" placeholder="details">
             <button type="button" id="submit-btn">Submit</button>
         </section>
+        <table class="table">
+            <thead id="tableHead">
+                <tr>
+                    <th>Priority</th>
+                    <th>Owner</th>
+                    <th>Task</th>
+                    <th>Details</th>
+                    <th>Start</th>
+                    <th>Finish</th>
+                    <th>😄</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- TODO LIST TASKS GO HERE -->
+            </tbody>
+        </table>
     </main>
-    <table class="table">
-        <thead class="table-head">
-            <tr>
-                <th>Priority</th>
-                <th>Owner</th>
-                <th>Task</th>
-                <th>Details</th>
-                <th>Start</th>
-                <th>Finish</th>
-                <th>😄</th>
-            </tr>
-        </thead>
-        <tbody class="table-body">
-            <!-- TODO LIST TASKS GO HERE -->
-        </tbody>
-    </table>
-    
     <footer>Footer Location</footer>
 </body>
 </html>

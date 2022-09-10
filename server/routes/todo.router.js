@@ -10,7 +10,11 @@ toDoRouter.get('/', (req, res) => {
     console.log('In GET Route');
     const sqlQuery = `
         SELECT * FROM "toDoList"
-            ORDER BY "start";
+            ORDER BY CASE
+                WHEN "priority" = 'high' then 1
+                WHEN "priority" = 'medium' then 2
+                WHEN "priority" = 'low' then 3
+                END ASC;
     `
     pool.query(sqlQuery)
         .then((dbRes) => {
