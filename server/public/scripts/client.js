@@ -103,7 +103,7 @@ function generateToDoList(tasks){
 function newRowFormat(currentTask){
     let detailId = -(currentTask.id);
     $('#tableBody').append(`
-        <tr data-id=${currentTask.id} id=${currentTask.id}>
+        <tr data-id=${currentTask.id} id=${currentTask.id} class="${currentTask.priority}">
             <td>${currentTask.priority}</td>
             <td>${currentTask.owner}</td>
             <td>${currentTask.task}</td>
@@ -155,7 +155,7 @@ function newRowFormat(currentTask){
 function completedRowFormat(currentTask){
     let detailId = -(currentTask.id);
     $('#tableBody').append(`
-        <tr data-id=${currentTask.id} id=${currentTask.id}>
+        <tr data-id=${currentTask.id} id=${currentTask.id} class="${currentTask.priority}">
             <td>${currentTask.priority}</td>
             <td>${currentTask.owner}</td>
             <td>${currentTask.task}</td>

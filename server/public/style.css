@@ -1,9 +1,78 @@
 main{
-    background-color: white;
     font-family: 'Press Start 2P';
     margin: 5%;
 }
 
 .userInputs{
     width: 25%;
+    min-width: 200px;
+}
+
+tr.HIGH{
+    background-color: rgba(255, 0, 0, 0.25);
+}
+
+tr.MEDIUM{
+    background-color: rgba(255, 166, 0, 0.25);
+}
+
+tr.LOW{
+    background-color: rgba(255, 255, 0, 0.251);
+}
+
+body{
+    background-image: url('./images/NES-Controller.png');
+    background-repeat: repeat;
+}
+
+header{
+    margin: 5%;
+    max-width: 75%;
+    min-width: 50%;
+    align-self: center;
+}
+
+span.titleText{
+    font-size: 4em;
+    font-weight: bold;
+    color: black;
+}
+
+#userInputBox{
+    margin: 5%;
+}
+
+section.container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr, 1fr;
+    grid-template-rows: 1fr, 1fr, 1fr;
+    grid-template-areas: 
+        "priority owner"
+        "task details"
+        "submit submit";
+}
+
+.priorityBox{
+    grid-area: priority;
+}
+
+.ownerBox{
+    grid-area: owner;
+}
+
+.taskBox{
+    grid-area: task;
+}
+
+.detailsBox{
+    grid-area: details;
+}
+
+.submitBox{
+    grid-area: submit;
+}
+
+#tableBody, #tableHead{
+    color: black;
 }
