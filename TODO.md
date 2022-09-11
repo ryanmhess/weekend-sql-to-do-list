@@ -16,24 +16,18 @@
 *   [🐢] PUT Route
     -   Alter/Update Existing Tasks
 
-*   [ ] COMPLETE Button
-    -   Complete Button Removed
+*   [🐢] COMPLETE Button
+    -   Complete Button Disabled
     -   Adds Completion Timestamp
     -   Greys Out Background/Text
     -   Complete BOOLEAN on Server
     -   Calls GET Route
 
-*   [ ] EDIT Button
-    -   Update Task Fields
-    -   Uses PUT Route
-    -   Calls GET Route
-
-*   [ ] DELETE Button
+*   [🐢] DELETE Button
     -   On Click Removes Checked Tasks
     -   Alert (Delete Confirmation)
     -   Calls GET Route
 
-*   [ ] Use Bootstrap for CSS
+*   [🐢] Use NES.css
 
-*   [ ] Responsive layout
-
+*   [🐇] Responsive layout

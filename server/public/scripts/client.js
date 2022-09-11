@@ -5,7 +5,7 @@ $(document).ready(onReady);
 function onReady(){
     getToDoList();
     $('#submit-btn').on('click', addToDoList);
-    $(document).on('click', '.delete-btn', deleteFromToDoList);
+    $(document).on('click', '#confirmDelete', deleteFromToDoList);
     $(document).on('click', '.complete-btn', completeToDoList);
 }
 
@@ -28,10 +28,10 @@ function addToDoList(){
     console.log('In POST Route');
     let startDateTime = new Date().toLocaleString();
     let newTaskInput = {
-        priority: $('#priorityInput').val(),
-        owner: $('#ownerInput').val(),
-        task: $('#taskInput').val(),
-        details: $('#detailsInput').val(),
+        priority: $('.priorityInput').val(),
+        owner: $('.ownerInput').val(),
+        task: $('.taskInput').val(),
+        details: $('.detailsInput').val(),
         start: startDateTime, 
         complete: false
     }
@@ -89,37 +89,121 @@ function generateToDoList(tasks){
     $('#detailsInput').val('');
     $('#tableBody').empty();
     for(let currentTask of tasks) {
-        $('#tableBody').append(`
-            <tr data-id=${currentTask.id} id=${currentTask.id}>
-                <td>${currentTask.priority}</td>
-                <td>${currentTask.owner}</td>
-                <td>${currentTask.task}</td>
-                <td>${currentTask.details}</td>
-                <td>${currentTask.start}</td>
-                <td>${currentTask.finish}</td>
-                <td>
-
-                <button type="button" class="nes-btn complete-btn is-success">COMPLETE</button>
-                <button type="button" class="nes-btn delete-btn is-error">DELETE</button>
-
-                </td>
-            </tr>
-        `);
-        if(currentTask.complete === true) {
+        if(currentTask.complete === false) {
+            newRowFormat(currentTask);
+        }
+        else if(currentTask.complete === true) {
+            completedRowFormat(currentTask);
             colorComplete(currentTask.id);
-
         }
     }
 }
 
-{/* <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-    <button type="button" class="btn complete-btn btn-success">COMPLETE</button>
-    <button type="button" class="btn delete-btn btn-danger">DELETE</button>
-</div> */}
+//  NEW ROW FORMAT
+function newRowFormat(currentTask){
+    let detailId = -(currentTask.id);
+    $('#tableBody').append(`
+        <tr data-id=${currentTask.id} id=${currentTask.id} class="${currentTask.priority}">
+            <td>${currentTask.priority}</td>
+            <td>${currentTask.owner}</td>
+            <td>${currentTask.task}</td>
+            <td>
+                <section>
+                    <button type="button" class="nes-btn is-warning" onclick="document.getElementById(${detailId}).showModal();">
+                        Click Me!
+                    </button>
+                    <dialog class="nes-dialog" id=${detailId}>
+                        <form method="dialog">
+                            <p class="title">${currentTask.owner}</p>
+                            <p>${currentTask.details}</p>
+                            <menu class="dialog-menu">
+                                <button class="nes-btn is-primary">Confirm</button>
+                            </menu>
+                        </form>
+                    </dialog>
+                </section>
+            </td>
+            <td>${currentTask.start}</td>
+            <td>${currentTask.finish}</td>
+            <td>
+                <button type="button" class="nes-btn complete-btn is-success">COMPLETE</button>
+            </td>
+            <td>
+                <section>
+                    <button type="button" class="nes-btn delete-btn is-error" onclick="document.getElementById('dialog-default').showModal();">
+                        DELETE
+                    </button>
+                    <dialog class="nes-dialog" id="dialog-default">
+                        <form method="dialog">
+                            <p class="title">DELETE</p>
+                            <p>Alert: Action is permamnent.</p>
+                            <menu class="dialog-menu">
+                                <button class="nes-btn">Cancel</button>
+                                <button class="nes-btn is-primary" id="confirmDelete">Confirm</button>
+                            </menu>
+                        </form>
+                    </dialog>
+                </section>
+            </td>
+        </tr>
+    `);
+}
+
+{/* <button type="button" class="nes-btn delete-btn is-error">DELETE</button> */}
+
+// COMPLETED ROW FORMAT
+function completedRowFormat(currentTask){
+    let detailId = -(currentTask.id);
+    $('#tableBody').append(`
+        <tr data-id=${currentTask.id} id=${currentTask.id} class="${currentTask.priority}">
+            <td>${currentTask.priority}</td>
+            <td>${currentTask.owner}</td>
+            <td>${currentTask.task}</td>
+            <td>
+                <section>
+                    <button type="button" class="nes-btn is-disabled" onclick="document.getElementById(${detailId}).showModal();">
+                        Click Me!
+                    </button>
+                    <dialog class="nes-dialog" id=${detailId}>
+                        <form method="dialog">
+                            <p class="title">${currentTask.owner}</p>
+                            <p>${currentTask.details}</p>
+                            <menu class="dialog-menu">
+                                <button class="nes-btn is-primary">Confirm</button>
+                            </menu>
+                        </form>
+                    </dialog>
+                </section>
+            </td>
+            <td>${currentTask.start}</td>
+            <td>${currentTask.finish}</td>
+            <td>
+                <button type="button" class="nes-btn is-disabled">COMPLETE</button>
+            </td>
+            <td>
+                <section>
+                    <button type="button" class="nes-btn delete-btn is-error" onclick="document.getElementById('dialog-default').showModal();">
+                        DELETE
+                    </button>
+                    <dialog class="nes-dialog" id="dialog-default">
+                        <form method="dialog">
+                            <p class="title">DELETE</p>
+                            <p>Alert: Action is permamnent.</p>
+                            <menu class="dialog-menu">
+                                <button class="nes-btn">Cancel</button>
+                                <button class="nes-btn is-primary" id="confirmDelete">Confirm</button>
+                            </menu>
+                        </form>
+                    </dialog>
+                </section>
+            </td>
+        </tr>
+    `);
+}
 
 //  COMPLETE INDICATOR
 function colorComplete(rowId){
     let targetRow = document.getElementById(rowId);
-    targetRow.style.backgroundColor = 'gray';
-    targetRow.style.color = 'lightGray';
+    targetRow.style.backgroundColor = 'black';
+    targetRow.style.color = 'gray';
 }

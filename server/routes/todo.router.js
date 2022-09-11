@@ -11,9 +11,9 @@ toDoRouter.get('/', (req, res) => {
         SELECT * FROM "toDoList"
             ORDER BY CASE
                 WHEN "complete" = 'true' then 4
-                WHEN "priority" = 'high' then 1
-                WHEN "priority" = 'medium' then 2
-                WHEN "priority" = 'low' then 3
+                WHEN "priority" = 'HIGH' then 1
+                WHEN "priority" = 'MEDIUM' then 2
+                WHEN "priority" = 'LOW' then 3
                 END ASC;
     `
     pool.query(sqlQuery)
