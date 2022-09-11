@@ -1,19 +1,9 @@
-body{
-    background-color: #264653;
-}
-
-header{
-    background-color: #2a9d8f;
-}
-
 main{
-    background-color: #e9c46a;
+    background-color: white;
+    font-family: 'Press Start 2P';
+    margin: 5%;
 }
 
-table{
-    background-color: #f4a261;
-}
-
-footer{
-    background-color: #e76f51;
+.userInputs{
+    width: 25%;
 }
