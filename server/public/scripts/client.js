@@ -77,9 +77,6 @@ function completeToDoList(){
     });
 }
 
-//  PUT - EDIT
-
-
 //  GENERATE
 function generateToDoList(tasks){
     console.log('In Generate Function');
@@ -148,8 +145,6 @@ function newRowFormat(currentTask){
         </tr>
     `);
 }
-
-{/* <button type="button" class="nes-btn delete-btn is-error">DELETE</button> */}
 
 // COMPLETED ROW FORMAT
 function completedRowFormat(currentTask){
