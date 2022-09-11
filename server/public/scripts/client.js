@@ -7,7 +7,6 @@ function onReady(){
     $('#submit-btn').on('click', addToDoList);
     $(document).on('click', '.delete-btn', deleteFromToDoList);
     $(document).on('click', '.complete-btn', completeToDoList);
-    $(document).on('click', '.complete-btn', colorComplete);
 }
 
 //  GET
@@ -99,27 +98,28 @@ function generateToDoList(tasks){
                 <td>${currentTask.start}</td>
                 <td>${currentTask.finish}</td>
                 <td>
-                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                        <button type="button" class="btn complete-btn btn-success">COMPLETE</button>
-                        
-                        <button type="button" class="btn delete-btn btn-danger">DELETE</button>
-                    </div>
+
+                <button type="button" class="nes-btn complete-btn is-success">COMPLETE</button>
+                <button type="button" class="nes-btn delete-btn is-error">DELETE</button>
+
                 </td>
             </tr>
         `);
+        if(currentTask.complete === true) {
+            colorComplete(currentTask.id);
+
+        }
     }
 }
 
-//  COMPLETE INDICATOR
-function colorComplete(){
-    let targetRow = document.getElementById($(this).closest('tr').data("id"));
-    targetRow.style.backgroundColor = 'purple';
-}
+{/* <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+    <button type="button" class="btn complete-btn btn-success">COMPLETE</button>
+    <button type="button" class="btn delete-btn btn-danger">DELETE</button>
+</div> */}
 
-// function colorComplete(){
-//     console.log('in color function:', $(this).closest('tr').data("id"));
-//     let targetRow = $(this).closest('tr').data("id");
-//     console.log(targetRow);
-//     let focus = document.getElementById(targetRow);
-//     focus.style.backgroundColor = 'gray';
-// }
+//  COMPLETE INDICATOR
+function colorComplete(rowId){
+    let targetRow = document.getElementById(rowId);
+    targetRow.style.backgroundColor = 'gray';
+    targetRow.style.color = 'lightGray';
+}
