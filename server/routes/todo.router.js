@@ -1,15 +1,16 @@
 const { Router } = require('express');
 const express = require('express');
 const toDoRouter = express.Router();
-
+const dayjs = require('dayjs')
 const pool = require('../modules/pool.js');
 
 //  GET
 toDoRouter.get('/', (req, res) => {
     console.log('In GET Route');
-    const sqlQuery = `
+    let sqlQuery = `
         SELECT * FROM "toDoList"
             ORDER BY CASE
+                WHEN "complete" = 'true' then 4
                 WHEN "priority" = 'high' then 1
                 WHEN "priority" = 'medium' then 2
                 WHEN "priority" = 'low' then 3
@@ -29,7 +30,8 @@ toDoRouter.get('/', (req, res) => {
 toDoRouter.post('/', (req, res) => {
     console.log('In POST Route');
     let newTask = req.body;
-    console.log(newTask);
+    let newStartTime = dayjs(newTask.start).format('h:mm a');
+    newTask.start = newStartTime;
     let queryText = `
         INSERT INTO "toDoList"
             ("priority", "owner", "task", "details", "start", "complete")
@@ -64,7 +66,26 @@ toDoRouter.delete('/:idToDelete', (req, res) => {
             res.sendStatus(500);
         });
 });
-//  PUT
 
+//  PUT
+toDoRouter.put('/:idToComplete', (req, res) => {
+    console.log('In PUT Route (COMPLETE)');
+    let completeId = req.params.idToComplete;
+    let finishDateTime = dayjs(new Date().toLocaleString()).format('h:mm a');
+    let sqlValue = [completeId];
+    let sqlQuery = `
+        UPDATE "toDoList"
+            SET "finish" = '${finishDateTime}', "complete" = 'true'
+            WHERE "id" = $1;
+    `
+    pool.query(sqlQuery, sqlValue)
+        .then((completeRes) => {
+            console.log('The PUT (COMPLETE) /todo was successful');
+            res.sendStatus(200);
+        }).catch((error) => {
+            console.log('The PUT (COMPLETE) /todo was unsuccessful', error);
+            res.sendStatus(500);
+        });
+});
 
 module.exports = toDoRouter;

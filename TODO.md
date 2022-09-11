@@ -2,18 +2,18 @@
 
 *   [🐢] Initial File/Folder Setup
 
-*   [ ] Build Database/Table (Test Data)
+*   [🐢] Build Database/Table (Test Data)
 
-*   [ ] GET Route 
+*   [🐢] GET Route 
     -   Update DOM with Table Data
 
-*   [ ] POST Route
+*   [🐢] POST Route
     -   Add Custom Tasks
 
-*   [ ] DELETE Route
+*   [🐢] DELETE Route
     -   Remove Selected Tasks
 
-*   [ ] PUT Route
+*   [🐢] PUT Route
     -   Alter/Update Existing Tasks
 
 *   [ ] COMPLETE Button
