@@ -4,7 +4,9 @@
 
 _Duration: 2 days_
 
+## Screen Shot
 
+![SS - Top of App](./server/public/images/app-screen-shot.png)
 
 ## Usage
 How does someone use this application? Tell a user story here.
@@ -25,7 +27,6 @@ How does someone use this application? Tell a user story here.
     *   Click 'DELETE' for prompt
         -   Click 'Save Contract' to leave prompt without changes
         -   Click 'Destroy Contract' to delete from quest list
-
 
 ## Built With
 
