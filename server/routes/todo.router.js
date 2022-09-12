@@ -34,11 +34,11 @@ toDoRouter.post('/', (req, res) => {
     newTask.start = newStartTime;
     let queryText = `
         INSERT INTO "toDoList"
-            ("priority", "owner", "task", "details", "start", "complete")
+            ("priority", "adventurer", "location", "details", "start", "complete")
             VALUES
             ($1, $2, $3, $4, $5, $6);
     `;
-    pool.query(queryText, [newTask.priority, newTask.owner, newTask.task, newTask.details, newTask.start, newTask.complete])
+    pool.query(queryText, [newTask.priority, newTask.adventurer, newTask.location, newTask.details, newTask.start, newTask.complete])
         .then((postRes) => {
             console.log('The POST /todo was successful');
             res.sendStatus(201);

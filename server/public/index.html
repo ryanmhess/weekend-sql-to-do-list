@@ -25,28 +25,52 @@
     </header>
     <main>
         <div id="userInputBox" class="nes-container with-title is-dark is-centered">
-            <p class="title">Chore Sign-up</p>
+            <p class="title">Quest Sign-up</p>
             <p>Good morning. Thou hast had a good night's sleep, I hope.</p>
             <p>Complete thine chores and see what rewards await!</p>
             <section class="userInputs container">
                 <div class="nes-select priorityBox">
                     <select required id="default_select" class="priorityInput">
                         <option value="" disabled selected hidden>Bounty</option>
-                        <option value="LOW"> ⭐ </option>
-                        <option value="MEDIUM"> ⭐ ⭐ ⭐ </option>
-                        <option value="HIGH"> ⭐ ⭐ ⭐ ⭐ ⭐</option>
+                        <option class="bounty" value="LOW"> 🍪 </option>
+                        <option class="bounty" value="MEDIUM"> 🍪 🍪 🍪 </option>
+                        <option class="bounty" value="HIGH"> 🍪 🍪 🍪 🍪 🍪</option>
                     </select>
                 </div>
-                <div class="nes-field ownerBox">
-                    <input type="text" id="name_field" class="nes-input ownerInput" placeholder="Owner">
+                <div class="nes-field adventurerBox">
+                    <input type="text" id="name_field" class="nes-input adventurerInput" placeholder="Adventurer">
                 </div>
-                <div class="nes-field taskBox">
-                    <input type="text" id="name_field" class="nes-input taskInput" placeholder="Task">
+                <div class="nes-field locationBox">
+                    <input type="text" id="name_field" class="nes-input locationInput" placeholder="Location">
                 </div>
                 <div class="nes-field detailsBox">
                     <input type="text" id="name_field" class="nes-input detailsInput" placeholder="Details">
                 </div>
-                <button type="button" id="submit-btn" class="nes-btn is-primary submitBox">Submit</button>
+
+
+
+
+
+                <!-- <button type="button" id="submit-btn" class="nes-btn is-primary submitBox">Submit</button> -->
+                <section class="submitBox">
+                    <button type="button" class="nes-btn is-primary" onclick="document.getElementById('dialog-dark-rounded').showModal();">
+                        Accept Quest Contract
+                    </button>
+                    <dialog class="nes-dialog is-dark is-rounded" id="dialog-dark-rounded">
+                        <form method="dialog">
+                            <p class="title">QUEST CONTRACT</p>
+                            <p>If thine contract hast been completed,</p>
+                            <p>prepare thyself for the trials ahead.</p>
+                            <p>TO ARMS!!!!</p>
+                            <p>May thee find glorious riches</p>
+                            <p>upon thy victorious return!</p>
+                            <menu class="dialog-menu">
+                                <button class="nes-btn">Review Contract</button>
+                                <button id="submit-btn" class="nes-btn is-primary">To Battle!</button>
+                            </menu>
+                        </form>
+                    </dialog>
+                </section>
             </section>
         </div>
         <div class="nes-container with-title is-dark">
@@ -56,8 +80,8 @@
                     <thead id="tableHead">
                         <tr>
                             <th>Priority</th>
-                            <th>Owner</th>
-                            <th>Task</th>
+                            <th>Adventurer</th>
+                            <th>Location</th>
                             <th>Details</th>
                             <th>Start</th>
                             <th>Finish</th>

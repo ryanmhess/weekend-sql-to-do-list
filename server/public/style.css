@@ -48,7 +48,7 @@ section.container{
     grid-template-columns: 1fr, 1fr;
     grid-template-rows: 1fr, 1fr, 1fr;
     grid-template-areas: 
-        "priority owner"
+        "priority adventurer"
         "task details"
         "submit submit";
 }
@@ -57,8 +57,8 @@ section.container{
     grid-area: priority;
 }
 
-.ownerBox{
-    grid-area: owner;
+.adventurerBox{
+    grid-area: adventurer;
 }
 
 .taskBox{

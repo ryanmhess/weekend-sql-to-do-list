@@ -26,11 +26,12 @@ function getToDoList(){
 //  POST
 function addToDoList(){
     console.log('In POST Route');
+    // inputCheck();
     let startDateTime = new Date().toLocaleString();
     let newTaskInput = {
         priority: $('.priorityInput').val(),
-        owner: $('.ownerInput').val(),
-        task: $('.taskInput').val(),
+        adventurer: $('.adventurerInput').val(),
+        location: $('.locationInput').val(),
         details: $('.detailsInput').val(),
         start: startDateTime, 
         complete: false
@@ -81,8 +82,8 @@ function completeToDoList(){
 function generateToDoList(tasks){
     console.log('In Generate Function');
     $('#priorityInput').val('');
-    $('#ownerInput').val('');
-    $('#taskInput').val('');
+    $('#adventurerInput').val('');
+    $('#locationInput').val('');
     $('#detailsInput').val('');
     $('#tableBody').empty();
     for(let currentTask of tasks) {
@@ -99,11 +100,12 @@ function generateToDoList(tasks){
 //  NEW ROW FORMAT
 function newRowFormat(currentTask){
     let detailId = -(currentTask.id);
+    let deleteId = (currentTask.id)+0.5;
     $('#tableBody').append(`
         <tr data-id=${currentTask.id} id=${currentTask.id} class="${currentTask.priority}">
             <td>${currentTask.priority}</td>
-            <td>${currentTask.owner}</td>
-            <td>${currentTask.task}</td>
+            <td>${currentTask.adventurer}</td>
+            <td>${currentTask.location}</td>
             <td>
                 <section>
                     <button type="button" class="nes-btn is-warning" onclick="document.getElementById(${detailId}).showModal();">
@@ -111,7 +113,7 @@ function newRowFormat(currentTask){
                     </button>
                     <dialog class="nes-dialog" id=${detailId}>
                         <form method="dialog">
-                            <p class="title">${currentTask.owner}</p>
+                            <p class="title">${currentTask.adventurer}</p>
                             <p>${currentTask.details}</p>
                             <menu class="dialog-menu">
                                 <button class="nes-btn is-primary">Confirm</button>
@@ -127,10 +129,10 @@ function newRowFormat(currentTask){
             </td>
             <td>
                 <section>
-                    <button type="button" class="nes-btn delete-btn is-error" onclick="document.getElementById('dialog-default').showModal();">
+                    <button type="button" class="nes-btn delete-btn is-error" onclick="document.getElementById(${deleteId}).showModal();">
                         DELETE
                     </button>
-                    <dialog class="nes-dialog" id="dialog-default">
+                    <dialog class="nes-dialog" id=${deleteId}>
                         <form method="dialog">
                             <p class="title">DELETE</p>
                             <p>Alert: Action is permamnent.</p>
@@ -149,11 +151,12 @@ function newRowFormat(currentTask){
 // COMPLETED ROW FORMAT
 function completedRowFormat(currentTask){
     let detailId = -(currentTask.id);
+    let deleteId = (currentTask.id)+0.5;
     $('#tableBody').append(`
         <tr data-id=${currentTask.id} id=${currentTask.id} class="${currentTask.priority}">
             <td>${currentTask.priority}</td>
-            <td>${currentTask.owner}</td>
-            <td>${currentTask.task}</td>
+            <td>${currentTask.adventurer}</td>
+            <td>${currentTask.location}</td>
             <td>
                 <section>
                     <button type="button" class="nes-btn is-disabled" onclick="document.getElementById(${detailId}).showModal();">
@@ -161,7 +164,7 @@ function completedRowFormat(currentTask){
                     </button>
                     <dialog class="nes-dialog" id=${detailId}>
                         <form method="dialog">
-                            <p class="title">${currentTask.owner}</p>
+                            <p class="title">${currentTask.adventurer}</p>
                             <p>${currentTask.details}</p>
                             <menu class="dialog-menu">
                                 <button class="nes-btn is-primary">Confirm</button>
@@ -177,10 +180,10 @@ function completedRowFormat(currentTask){
             </td>
             <td>
                 <section>
-                    <button type="button" class="nes-btn delete-btn is-error" onclick="document.getElementById('dialog-default').showModal();">
+                    <button type="button" class="nes-btn delete-btn is-error" onclick="document.getElementById(${deleteId}).showModal();">
                         DELETE
                     </button>
-                    <dialog class="nes-dialog" id="dialog-default">
+                    <dialog class="nes-dialog" id=${deleteId}>
                         <form method="dialog">
                             <p class="title">DELETE</p>
                             <p>Alert: Action is permamnent.</p>
@@ -202,3 +205,16 @@ function colorComplete(rowId){
     targetRow.style.backgroundColor = 'black';
     targetRow.style.color = 'gray';
 }
+
+//  INPUT CHECK
+// function inputCheck(){
+//     let priority = $('.priorityInput').val();
+//     let adventurer = $('.adventurerInput').val();
+//     let location = $('.locationInput').val();
+//     let details = $('.detailsInput').val();
+//     if(!priority || !adventurer || !location || !details){
+
+//         return;
+//     }
+//     onReady();
+// }
