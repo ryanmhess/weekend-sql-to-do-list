@@ -4,7 +4,12 @@ const toDoRouter = express.Router();
 const dayjs = require('dayjs')
 const pool = require('../modules/pool.js');
 
+//-----------------------------------------------------------------//
 //  GET
+//
+//  This function asks for the table data from the toDoList and 
+//  sets an order for sorting the received data.
+
 toDoRouter.get('/', (req, res) => {
     console.log('In GET Route');
     let sqlQuery = `
@@ -26,7 +31,13 @@ toDoRouter.get('/', (req, res) => {
         });
 });
 
+//-----------------------------------------------------------------//
 //  POST
+//
+//  This function receives a new task from the client via input 
+//  values, adds a start time and inserts as a new row in the
+//  database.
+
 toDoRouter.post('/', (req, res) => {
     console.log('In POST Route');
     let newTask = req.body;
@@ -48,7 +59,12 @@ toDoRouter.post('/', (req, res) => {
         });
 });
 
+//-----------------------------------------------------------------//
 //  DELETE
+//
+//  This deletes a row from the database whose id value matches
+//  that of the data received from the request.
+
 toDoRouter.delete('/:idToDelete', (req, res) => {
     console.log('In DELETE Route');
     let deleteId = req.params.idToDelete;
@@ -67,7 +83,13 @@ toDoRouter.delete('/:idToDelete', (req, res) => {
         });
 });
 
-//  PUT
+//-----------------------------------------------------------------//
+//  GET
+//
+//  This function sets a finish time and changes the complete
+//  value to true on the row with an id matching that of the
+//  data received in the request.
+
 toDoRouter.put('/:idToComplete', (req, res) => {
     console.log('In PUT Route (COMPLETE)');
     let completeId = req.params.idToComplete;

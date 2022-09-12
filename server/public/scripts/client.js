@@ -9,7 +9,13 @@ function onReady(){
     $(document).on('click', '.complete-btn', completeToDoList);
 }
 
+//-----------------------------------------------------------------//
 //  GET
+//
+//  This function sends a GET request thru the server/router to 
+//  obtain the values saved in the database, then sends the values
+//  to the generateToDoList function.
+
 function getToDoList(){
     console.log('In GET Route');
     $.ajax({
@@ -23,7 +29,13 @@ function getToDoList(){
     });
 }
 
+//-----------------------------------------------------------------//
 //  POST
+//
+//  This function sends a POST request thru the server/router to 
+//  add the input values into the database, then calls the 
+//  getToDoList function.
+
 function addToDoList(){
     console.log('In POST Route');
     // inputCheck();
@@ -48,7 +60,12 @@ function addToDoList(){
     });
 }
 
+//-----------------------------------------------------------------//
 //  DELETE
+//
+//  This function sends a DELETE request thru the server/router to 
+//  remove the associated database table 'id' row.
+
 function deleteFromToDoList(){
     console.log('In DELETE Route');
     let idToDelete = $(this).closest('tr').data("id");
@@ -63,7 +80,13 @@ function deleteFromToDoList(){
     });
 }
 
-//  PUT - COMPLETE
+//-----------------------------------------------------------------//
+//  PUT
+//
+//  This function sends a GET request thru the server/router to 
+//  change the value of the database table column 'complete' from
+//  false to true.
+
 function completeToDoList(){
     console.log('In PUT Route (COMPLETE)');
     let idToComplete = $(this).closest('tr').data("id");
@@ -78,7 +101,13 @@ function completeToDoList(){
     });
 }
 
+//-----------------------------------------------------------------//
 //  GENERATE
+//
+//  This function receives the database data, clears out the input
+//  fields, checks if the row data is complete and sends the data
+//  off for further row generation and possible color change.
+
 function generateToDoList(tasks){
     console.log('In Generate Function');
     $('#priorityInput').val('');
@@ -97,7 +126,12 @@ function generateToDoList(tasks){
     }
 }
 
+//-----------------------------------------------------------------//
 //  NEW ROW FORMAT
+//
+//  This function appends new rows as they are created. Inserts
+//  buttons with pop-ups that are row specific.
+
 function newRowFormat(currentTask){
     let detailId = -(currentTask.id);
     let deleteId = (currentTask.id)+0.5;
@@ -134,11 +168,13 @@ function newRowFormat(currentTask){
                     </button>
                     <dialog class="nes-dialog" id=${deleteId}>
                         <form method="dialog">
-                            <p class="title">DELETE</p>
-                            <p>Alert: Action is permamnent.</p>
+                            <p class="title">${currentTask.adventurer}</p>
+                            <p>Report to thine nearest Realm Magistrate to receive thine bounty!</p>
+                            <p>Save contract until quest completion.</p>
+                            <p>Destroy contract when thee have obtained thine rewards!</p>
                             <menu class="dialog-menu">
-                                <button class="nes-btn">Cancel</button>
-                                <button class="nes-btn is-primary" id="confirmDelete">Confirm</button>
+                                <button class="nes-btn">Save Contract</button>
+                                <button class="nes-btn is-primary" id="confirmDelete">Destroy Contract</button>
                             </menu>
                         </form>
                     </dialog>
@@ -148,7 +184,13 @@ function newRowFormat(currentTask){
     `);
 }
 
-// COMPLETED ROW FORMAT
+//-----------------------------------------------------------------//
+//  COMPLETED ROW FORMAT
+//
+//  This function is called off clicklistner when the complete
+//  button is clicked. It appends the targetted row and disables
+//  the complete button.
+
 function completedRowFormat(currentTask){
     let detailId = -(currentTask.id);
     let deleteId = (currentTask.id)+0.5;
@@ -185,11 +227,13 @@ function completedRowFormat(currentTask){
                     </button>
                     <dialog class="nes-dialog" id=${deleteId}>
                         <form method="dialog">
-                            <p class="title">DELETE</p>
-                            <p>Alert: Action is permamnent.</p>
+                            <p class="title">${currentTask.adventurer}</p>
+                            <p>Report to thine nearest Realm Magistrate to receive thine bounty!</p>
+                            <p>Save contract until quest completion.</p>
+                            <p>Destroy contract when thee have obtained thine rewards!</p>
                             <menu class="dialog-menu">
-                                <button class="nes-btn">Cancel</button>
-                                <button class="nes-btn is-primary" id="confirmDelete">Confirm</button>
+                                <button class="nes-btn">Save Contract</button>
+                                <button class="nes-btn is-primary" id="confirmDelete">Destroy Contract</button>
                             </menu>
                         </form>
                     </dialog>
@@ -199,22 +243,16 @@ function completedRowFormat(currentTask){
     `);
 }
 
-//  COMPLETE INDICATOR
+//-----------------------------------------------------------------//
+//  COLOR COMPLETE
+//
+//  This function changes the background color and text color 
+//  of the targeted row
+
 function colorComplete(rowId){
     let targetRow = document.getElementById(rowId);
     targetRow.style.backgroundColor = 'black';
     targetRow.style.color = 'gray';
 }
 
-//  INPUT CHECK
-// function inputCheck(){
-//     let priority = $('.priorityInput').val();
-//     let adventurer = $('.adventurerInput').val();
-//     let location = $('.locationInput').val();
-//     let details = $('.detailsInput').val();
-//     if(!priority || !adventurer || !location || !details){
-
-//         return;
-//     }
-//     onReady();
-// }
+// Client END
