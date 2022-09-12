@@ -84,7 +84,7 @@ toDoRouter.delete('/:idToDelete', (req, res) => {
 });
 
 //-----------------------------------------------------------------//
-//  GET
+//  PUTgit s
 //
 //  This function sets a finish time and changes the complete
 //  value to true on the row with an id matching that of the

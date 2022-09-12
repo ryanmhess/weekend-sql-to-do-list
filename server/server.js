@@ -7,6 +7,7 @@ const pool = require('./modules/pool.js');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('server/public'));
+
 app.use('/todo', toDoRouter);
 
 app.listen(PORT, () => {

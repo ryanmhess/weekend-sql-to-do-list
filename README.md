@@ -1,16 +1,8 @@
-(View Raw will give you the markdown that you can copy to your repos!)
-
-
-![MIT LICENSE](https://img.shields.io/github/license/scottbromander/the_marketplace.svg?style=flat-square)
-![REPO SIZE](https://img.shields.io/github/repo-size/scottbromander/the_marketplace.svg?style=flat-square)
-![TOP_LANGUAGE](https://img.shields.io/github/languages/top/scottbromander/the_marketplace.svg?style=flat-square)
-![FORKS](https://img.shields.io/github/forks/scottbromander/the_marketplace.svg?style=social)
-
-# PROJECT NAME
+# WEEKEND SQL TODO LIST
 
 ## Description
 
-_Duration: 2 Week Sprint_
+_Duration: 2 days_
 
 Directly above this is how long it took you to develop the project. Your project description goes here. What problem did you solve? How did you solve it? 
 
@@ -47,25 +39,18 @@ If your application has secret keys (for example --  Twilio), make sure you tell
 ## Usage
 How does someone use this application? Tell a user story here.
 
-1. xxx
-2. xxx
-3. xxx
-4. xxx
+1. Fill out input fields in the Quest Sign-up box
+2. Click 'Accept Quest Contract'
+3. Click 'Review Contract' to edit inputs
+4. Click 'To Battle!' to proceed with inputs
 5. xxx
 6. xxx
 
 
 ## Built With
 
-List technologies and frameworks here
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
-
-_Note, include this only if you have a license file. GitHub will generate one for you if you want!_
-
-## Acknowledgement
-Thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped me to make this application a reality. (Thank your people)
-
-## Support
-If you have suggestions or issues, please email me at [youremail@whatever.com](www.google.com)
+Express
+pg
+body-parser
+nodemon
+NES.css
