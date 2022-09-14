@@ -7,6 +7,7 @@ function onReady(){
     $('#submit-btn').on('click', addToDoList);
     $(document).on('click', '#confirmDelete', deleteFromToDoList);
     $(document).on('click', '.complete-btn', completeToDoList);
+    $(document).on('click', '.complete-btn', questComplete);
 }
 
 //-----------------------------------------------------------------//
@@ -149,8 +150,9 @@ function newRowFormat(currentTask){
                         <form method="dialog">
                             <p class="title">${currentTask.adventurer}</p>
                             <p>${currentTask.details}</p>
+                            <br>
                             <menu class="dialog-menu">
-                                <button class="nes-btn is-primary">Confirm</button>
+                                <button class="nes-btn is-primary">Return to Quest List</button>
                             </menu>
                         </form>
                     </dialog>
@@ -169,9 +171,13 @@ function newRowFormat(currentTask){
                     <dialog class="nes-dialog" id=${deleteId}>
                         <form method="dialog">
                             <p class="title">${currentTask.adventurer}</p>
-                            <p>Report to thine nearest Realm Magistrate to receive thine bounty!</p>
-                            <p>Save contract until quest completion.</p>
-                            <p>Destroy contract when thee have obtained thine rewards!</p>
+                            <p>When thou hast completed thy quest,</p>
+                            <p>seek out the local magistrate for thy rewards!</p>
+                            <br>
+                            <p>Save thy contract until thy quest is complete.</p>
+                            <br>
+                            <p>Destroy thy contract when thee hast received thy rewards!</p>
+                            <br>
                             <menu class="dialog-menu">
                                 <button class="nes-btn">Save Contract</button>
                                 <button class="nes-btn is-primary" id="confirmDelete">Destroy Contract</button>
@@ -208,8 +214,9 @@ function completedRowFormat(currentTask){
                         <form method="dialog">
                             <p class="title">${currentTask.adventurer}</p>
                             <p>${currentTask.details}</p>
+                            <br>
                             <menu class="dialog-menu">
-                                <button class="nes-btn is-primary">Confirm</button>
+                                <button class="nes-btn is-primary">Return to Quest List</button>
                             </menu>
                         </form>
                     </dialog>
@@ -228,9 +235,13 @@ function completedRowFormat(currentTask){
                     <dialog class="nes-dialog" id=${deleteId}>
                         <form method="dialog">
                             <p class="title">${currentTask.adventurer}</p>
-                            <p>Report to thine nearest Realm Magistrate to receive thine bounty!</p>
-                            <p>Save contract until quest completion.</p>
-                            <p>Destroy contract when thee have obtained thine rewards!</p>
+                            <p>When thou hast completed thy quest,</p>
+                            <p>seek out the local magistrate for thy rewards!</p>
+                            <br>
+                            <p>Save thy contract until thy quest is complete.</p>
+                            <br>
+                            <p>Destroy thy contract when thee hast received thy rewards!</p>
+                            <br>
                             <menu class="dialog-menu">
                                 <button class="nes-btn">Save Contract</button>
                                 <button class="nes-btn is-primary" id="confirmDelete">Destroy Contract</button>
@@ -253,6 +264,16 @@ function colorComplete(rowId){
     let targetRow = document.getElementById(rowId);
     targetRow.style.backgroundColor = 'black';
     targetRow.style.color = 'gray';
+}
+
+//-----------------------------------------------------------------//
+//  QUEST COMPLETE
+//
+//  This function plays audio when quest complete
+
+function questComplete(){
+        let audio = new Audio('../sounds/everquestDing.mp3');
+        audio.play();
 }
 
 // Client END
